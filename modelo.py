@@ -1,57 +1,46 @@
-class Filme:
-    def __init__(self, nome, ano, duracao):
-        self.__nome = nome.title()
+class Programa:
+    def __init__(self,nome,ano):
+        self._nome = nome.title()
         self.ano = ano
-        self.duracao = duracao
-        self.__likes = 0
+        self._likes = 0
 
     @property
     def likes(self): #usando proprety para retornar atributos privados para nao precisar modificar todos os lugares do codigo que usam likes e nomes
-        return self.__likes
+        return self._likes
+
+    def dar_like(self):
+        self._likes +=1
 
     @property
     def nome(self):
-        return self.__nome
+        return self._nome
 
     @nome.setter
     def nome(self, novo_nome):
-        self.__nome = novo_nome.title()
+        self._nome = novo_nome.title()
 
-    def dar_like(self):
-        self.__likes +=1
 
-class Serie:
+class Filme(Programa): #herdando da classe Programa
+    def __init__(self, nome, ano, duracao):
+        super().__init__(nome, ano) #super chama a classe mae nesse caso o inicializador dela
+        self.duracao = duracao
+
+
+class Serie(Programa):
     def __init__(self, nome, ano, temporadas):
-        self.__nome = nome.title()
-        self.ano = ano
+        super().__init__(nome,ano) #super chama qualquer metodo da classe mae
         self.temporadas = temporadas
-        self.__likes = 0
-
-    @property
-    def likes(self):
-        return self.__likes
-
-    @property
-    def nome(self):
-        return self.__nome
-
-    @nome.setter
-    def nome(self, novo_nome):
-        self.__nome = novo_nome.title()
-
-    def dar_like(self):
-        self.__likes +=1
 
 
 
-vingadores = Filme("Vigadores - Guerra Infinita", 2018, 160)
-
-westworld = Serie("Westworld", 2017, 2)
-
+vingadores = Filme('vingadores - guerra infinita', 2018, 160)
+westworld = Serie('westworld', 2018, 2)
+vingadores.dar_like()
+vingadores.dar_like()
+vingadores.dar_like()
 
 westworld.dar_like()
-vingadores.dar_like()
-vingadores.dar_like()
+westworld.dar_like()
 
-print(vingadores.nome, vingadores.likes)
-print(westworld.nome, westworld.ano, westworld.temporadas, westworld.likes)
+print(f'Nome: {vingadores.nome} - Likes: {vingadores.likes}')
+print(f'Nome: {westworld.nome} - Likes: {westworld.likes}')
