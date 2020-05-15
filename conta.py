@@ -3,12 +3,12 @@ class Conta:
     #construtor
     def __init__(self, numero, titular, saldo, limite): #self é a referencia para encontrar o objeto quando criado
         print("Construindo objeto ... {}".format(self))
-        self.__numero = numero
+        self.__numero = numero #atributos
         self.__titular = titular
         self.__saldo = saldo
         self.__limite = limite
 
-    def extrato(self):
+    def extrato(self): #metodos
         print("saldo de {} do titular {}".format(self.__saldo, self.__titular))
 
     def depositar(self,valor):
@@ -40,7 +40,7 @@ class Conta:
     def limite(self):
         return self.__limite
 
-    @limite.setter #usando property em um getter pra modificar o valor do limite
+    @limite.setter #usando property em um setter pra modificar o valor do limite
     def limite(self, limite):
         self.__limite = limite
 
@@ -49,5 +49,5 @@ class Conta:
         return "001"
 
     @staticmethod
-    def codigos_bancos(): #metodo estatico é da classe, nao precisa do objeto
+    def codigos_bancos():
         return {"BB" : "001", "Caixa" : "104", "Bradesco": "237"}
