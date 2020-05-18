@@ -40,9 +40,23 @@ class Serie(Programa):
         return (f'{self._nome} - {self.ano} - {self.temporadas} Temporadas - {self._likes} Likes')
 
 
+class Playlist:
+    def __init__(self, nome, programas):
+        self.nome = nome
+        self._programas = programas
+
+    @property
+    def listagem(self): #retornando os programas dentro da playlist
+        return self._programas
+
+    @property
+    def tamanho(self): #retornando a quantidade de objectos na playlist
+        return len(self._programas)
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160)
 westworld = Serie('westworld', 2018, 2)
+drive = Filme("Drive", 2015, 100)
+
 vingadores.dar_like()
 vingadores.dar_like()
 vingadores.dar_like()
@@ -50,7 +64,12 @@ vingadores.dar_like()
 westworld.dar_like()
 westworld.dar_like()
 
-filmes_e_series = [vingadores, westworld]
+filmes_e_series = [vingadores, westworld, drive]
+playl_fim_de_semana = Playlist("fim de semana", filmes_e_series)
 
-for programa in filmes_e_series:
+print(f"Tamanho da playlist: {len(playl_fim_de_semana.listagem)}")
+
+for programa in playl_fim_de_semana.listagem:
     print(programa)
+
+print(f"Existe dentro da playlist:{drive in playl_fim_de_semana.listagem}")
