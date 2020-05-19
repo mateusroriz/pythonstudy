@@ -45,12 +45,16 @@ class Playlist:
         self.nome = nome
         self._programas = programas
 
+
+    def __getitem__(self, item): #ducktyping
+        return self._programas[item] #repassando item para uma lista interna
+
     @property
     def listagem(self): #retornando os programas dentro da playlist
         return self._programas
 
-    @property
-    def tamanho(self): #retornando a quantidade de objectos na playlist
+
+    def __len__(self): #ducktyping, usando a funcionalidade de um metodo sem precisar herdar dele
         return len(self._programas)
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160)
@@ -67,9 +71,9 @@ westworld.dar_like()
 filmes_e_series = [vingadores, westworld, drive]
 playl_fim_de_semana = Playlist("fim de semana", filmes_e_series)
 
-print(f"Tamanho da playlist: {len(playl_fim_de_semana.listagem)}")
+print(f"Tamanho da playlist: {len(playl_fim_de_semana)}")
 
-for programa in playl_fim_de_semana.listagem:
+for programa in playl_fim_de_semana:
     print(programa)
 
-print(f"Existe dentro da playlist:{drive in playl_fim_de_semana.listagem}")
+print(f"Existe dentro da playlist:{drive in playl_fim_de_semana}")
