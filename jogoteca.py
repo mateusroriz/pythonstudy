@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__) #__name__ it's the package name
 
@@ -29,7 +29,6 @@ def criar():
     console = request.form["console"]
     jogo = Jogo(nome,categoria,console)
     lista.append(jogo)
-    return render_template("lista.html", titulo= "Jogo", jogos = lista)
-
+    return redirect('/')
 
 app.run(debug = True)
